@@ -1,39 +1,84 @@
-let progress = 25;
+let progress = localStorage.getItem("progress") || 25;
+let missions = localStorage.getItem("missions") || 0;
 
+
+// Start Mission Button
 function startMission() {
 
-    progress += 25;
+    progress = Number(progress) + 25;
 
     if (progress > 100) {
         progress = 100;
     }
 
-    document.querySelector(".progress").style.width = progress + "%";
+
+    missions = Number(missions) + 1;
+
+
+    localStorage.setItem("progress", progress);
+    localStorage.setItem("missions", missions);
+
+
+    updateDisplay();
+
+
+    if (progress === 100) {
+
+        document.getElementById("missionMessage").innerHTML =
+        "🎉 Mission Complete! Operation Jeb Reloaded Ready!";
+
+    } 
+    else {
+
+        document.getElementById("missionMessage").innerHTML =
+        "Mission in progress... Keep building 🚀";
+
+    }
+
+}
+
+
+
+// Update Screen
+function updateDisplay(){
+
+    document.querySelector(".progress").style.width =
+    progress + "%";
+
 
     document.getElementById("progressText").innerHTML =
     progress + "% Complete 🚀";
 
 
-    if (progress === 50) {
-        document.getElementById("missionMessage").innerHTML =
-        "Mission building phase started 💻🔥";
-    }
-
-    if (progress === 75) {
-        document.getElementById("missionMessage").innerHTML =
-        "Almost there! Final testing 🚀";
-    }
-
-    if (progress === 100) {
-        document.getElementById("missionMessage").innerHTML =
-        "🎉 Mission Complete! Operation Jeb Reloaded Ready!";
-    }
+    document.getElementById("counter").innerHTML =
+    "Missions Completed: " + missions;
 
 }
-if (progress === 100) {
-    document.getElementById("missionMessage").innerHTML =
-    "🎉 Mission Complete! Operation Jeb Reloaded Ready!";
 
-    document.querySelector("button").innerHTML = "Mission Completed ✅";
-    document.querySelector("button").disabled = true;
+
+
+// Dark Mode
+function toggleMode(){
+
+    document.body.classList.toggle("dark");
+
 }
+
+
+
+// Reset Mission
+function resetMission(){
+
+    progress = 25;
+    missions = 0;
+
+    localStorage.clear();
+
+    location.reload();
+
+}
+
+
+
+// Page Load
+updateDisplay();

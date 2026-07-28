@@ -91,3 +91,17 @@ h1 {
     background: linear-gradient(90deg, #667eea, #764ba2);
     border-radius: 20px;
 }
+.dark {
+    background: #111;
+}
+
+.dark .container {
+    background: #222;
+}
+
+.dark h1,
+.dark h3,
+.dark p,
+.dark span {
+    color: white;
+}
