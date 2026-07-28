@@ -1,11 +1,39 @@
+let progress = 25;
+
 function startMission() {
 
-    document.querySelector(".progress").style.width = "50%";
+    progress += 25;
+
+    if (progress > 100) {
+        progress = 100;
+    }
+
+    document.querySelector(".progress").style.width = progress + "%";
 
     document.getElementById("progressText").innerHTML =
-    "50% Complete 🚀";
+    progress + "% Complete 🚀";
 
+
+    if (progress === 50) {
+        document.getElementById("missionMessage").innerHTML =
+        "Mission building phase started 💻🔥";
+    }
+
+    if (progress === 75) {
+        document.getElementById("missionMessage").innerHTML =
+        "Almost there! Final testing 🚀";
+    }
+
+    if (progress === 100) {
+        document.getElementById("missionMessage").innerHTML =
+        "🎉 Mission Complete! Operation Jeb Reloaded Ready!";
+    }
+
+}
+if (progress === 100) {
     document.getElementById("missionMessage").innerHTML =
-    "Mission started! Keep building 💻🔥";
+    "🎉 Mission Complete! Operation Jeb Reloaded Ready!";
 
+    document.querySelector("button").innerHTML = "Mission Completed ✅";
+    document.querySelector("button").disabled = true;
 }
