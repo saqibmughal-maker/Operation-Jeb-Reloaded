@@ -82,3 +82,30 @@ function resetMission(){
 
 // Page Load
 updateDisplay();
+
+
+let savedName = localStorage.getItem("username");
+
+if(savedName){
+
+    document.getElementById("welcome").innerHTML =
+    "Welcome " + savedName + " 🚀";
+
+}
+
+function saveName(){
+
+    let name = document.getElementById("username").value;
+
+    if(name === ""){
+        alert("Please enter your name 🚀");
+        return;
+    }
+
+    localStorage.setItem("username", name);
+
+    document.getElementById("welcome").innerHTML =
+    "Welcome " + name + " 🚀";
+
+}
+
